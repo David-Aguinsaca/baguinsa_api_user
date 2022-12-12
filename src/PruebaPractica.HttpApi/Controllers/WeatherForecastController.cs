@@ -43,7 +43,7 @@ public class WeatherForecastController : ControllerBase
                 identification = identificationBase64
             };
         }
-
+        
         logger.LogWarning($"La cedula con: {search} no ha sido encontrada");
 
         throw new Exception("Error en la busqueda en la cedula");
