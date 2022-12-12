@@ -19,8 +19,9 @@ public class WeatherForecastController : ControllerBase
     }
 
     private static List<UserModel> _userList = new List<UserModel>{
-                new  UserModel{identification="1700000001", name="Pedro"},
-                new  UserModel{identification="1700000002", name="Juan"}
+                new UserModel{identification="1700000001", name="Pedro"},
+                new UserModel{identification="1700000002", name="Juan"},
+                new UserModel{identification= "1717007000", name="Cesar Garcia"}
             };
 
     [HttpGet(Name = "{search}")]
@@ -34,6 +35,8 @@ public class WeatherForecastController : ControllerBase
 
         if (user != null)
         {
+            logger.LogInformation($"Convertiendo cedula {user.identification} en base64");
+
             var plainTextBytes = Encoding.UTF8.GetBytes(user.identification);
             var identificationBase64 = System.Convert.ToBase64String(plainTextBytes);
 
@@ -43,7 +46,7 @@ public class WeatherForecastController : ControllerBase
                 identification = identificationBase64
             };
         }
-        
+
         logger.LogWarning($"La cedula con: {search} no ha sido encontrada");
 
         throw new Exception("Error en la busqueda en la cedula");
